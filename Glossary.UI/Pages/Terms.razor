@@ -1,0 +1,38 @@
+﻿@page "/terms"
+<h3>Terms</h3>
+@if (TermList == null)
+{
+    <h3>Loading..</h3>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Word Or Phrase</th>
+                <th>Defination</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var term in TermList)
+            {
+                <tr>
+                    <td>@term.Id</td>
+                    <td>@term.WordOrPPhrase</td>
+                    <td>Defination</td>
+                    <td>
+                        <a href="@($"defination/{term.Id}")" class="btn btn-primary">Show Defination</a>
+                        <a href="@($"terms/{term.Id}")" class="btn btn-group">Edit</a>
+                        <a href="@($"defination/{term.Id}")" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+}

@@ -1,0 +1,28 @@
+﻿@page "/defination/{TermId}"
+<h3>TermDefinations</h3>
+@if (Definations == null)
+{
+    <h3>Loading..</h3>
+}
+else
+{
+    @foreach (var defination in Definations)
+    {
+        <p>
+            <h3>Defination: @($"{Count++}") </h3>
+            @defination
+            <hr />
+            <span>
+                <input type="button"  value="Edit"/>
+                <input type="button"  value="Delete"/>
+            </span>
+        </p>
+    }
+    <p>
+        <a href="@($"terms")" class="btn btn-primary">Back</a>
+    </p>
+
+}
+@code {
+
+}
