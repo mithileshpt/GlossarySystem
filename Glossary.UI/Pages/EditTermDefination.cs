@@ -34,12 +34,14 @@ namespace Glossary.UI.Pages
         {
             if (TermId != null)
             {
+                EditTermDefinationViewModel.Id = int.Parse(TermId);
                 await TermService.UpdateTerm(EditTermDefinationViewModel);
             }
             else {
                 
                 await TermService.CreateTerm(EditTermDefinationViewModel);
-            } 
+            }
+            Saved = true;
         }
 
         protected async Task HandleInValidSubmit()

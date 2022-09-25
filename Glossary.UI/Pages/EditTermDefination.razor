@@ -2,11 +2,10 @@
 @page "/EditTermDefination/{TermId}"
 
 <h3>EditTermDefination</h3>
-<div class="@StatusClass" hidden="@Saved">
-    <p>@Message</p>
-</div>
+@if (!Saved)
+{ 
 <section class="">
-    <EditForm Model="@EditTermDefinationViewModel" 
+    <EditForm Model="@EditTermDefinationViewModel"
               OnInvalidSubmit="@HandleInValidSubmit"
               OnValidSubmit="@HandleValidSubmit">
         <div class="form-group row">
@@ -20,9 +19,16 @@
                            @bind-Value="@EditTermDefinationViewModel.Defination" PlaceHolder="Enter Defination"></InputTextArea>
         </div>
         <div class="row">
-            
+
             <button type="submit" class="btn btn-primary ">Submit </button>
         </div>
     </EditForm>
 </section>
+}
+else
+{
+    <h2>record saved successfully</h2>
+    <a href="terms" class="btn btn-outline-primary">Back to List</a>
+}
+
 

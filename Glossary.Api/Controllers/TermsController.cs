@@ -57,6 +57,7 @@ namespace Glossary.Api.Controllers
 
             var term = new Term
             {
+                Id = command.Id,
                 WordOrPPhrase = command.WordOrPhrase,
                 Definition = new List<Definition>
                 {
