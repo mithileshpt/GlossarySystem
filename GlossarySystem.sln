@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glossary.Infrastructure", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{BB6B010C-3B91-4641-BDA2-AB36E9A5CAD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glossary.UI", "Glossary.UI\Glossary.UI.csproj", "{BBD6A068-5617-4327-A496-F88966093976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glossary.UI", "Glossary.UI\Glossary.UI.csproj", "{BBD6A068-5617-4327-A496-F88966093976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

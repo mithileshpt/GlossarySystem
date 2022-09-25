@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Glossary.Application\Glossary.Application.csproj" />
     <ProjectReference Include="..\Glossary.Core\Glossary.Core.csproj" />
     <ProjectReference Include="..\Glossary.Infrastructure\Glossary.Infrastructure.csproj" />
   </ItemGroup>

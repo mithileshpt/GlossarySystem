@@ -1,0 +1,28 @@
+﻿@page "/EditTermDefination"
+@page "/EditTermDefination/{TermId}"
+
+<h3>EditTermDefination</h3>
+<div class="@StatusClass" hidden="@Saved">
+    <p>@Message</p>
+</div>
+<section class="">
+    <EditForm Model="@EditTermDefinationViewModel" 
+              OnInvalidSubmit="@HandleInValidSubmit"
+              OnValidSubmit="@HandleValidSubmit">
+        <div class="form-group row">
+            <label for="Term" class="col-sm-3">Word or Phrase</label>
+            <InputText id="WordOrPhrase" class="form-control col-sm-3"
+                       @bind-Value="@EditTermDefinationViewModel.WordOrPhrase" PlaceHolder="Enter Word or Phrase"></InputText>
+        </div>
+        <div class="form-group row">
+            <label for="Term" class="col-sm-3">Word or Phrase</label>
+            <InputTextArea id="Defination" class="form-control col-sm-3"
+                           @bind-Value="@EditTermDefinationViewModel.Defination" PlaceHolder="Enter Defination"></InputTextArea>
+        </div>
+        <div class="row">
+            
+            <button type="submit" class="btn btn-primary ">Submit </button>
+        </div>
+    </EditForm>
+</section>
+

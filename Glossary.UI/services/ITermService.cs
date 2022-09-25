@@ -8,9 +8,10 @@ namespace Glossary.UI.services
     public interface ITermService
     {
         Task<IEnumerable<TermsViewModel>> GetAllTerms();
+        Task<TermsViewModel> GetTermBy(int Term);
         Task<IEnumerable<TermsViewModel>> SearchTerms(string word);
-        Task CreateTerm(TermsViewModel termDefination);
-        Task UpdateTerm(TermsViewModel term);
+        Task CreateTerm(EditTermDefinationViewModel termDefination);
+        Task UpdateTerm(EditTermDefinationViewModel termDefination);
         Task Delete(long termId);
     }
 }

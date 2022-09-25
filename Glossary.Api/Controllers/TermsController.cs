@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Glossary.Core.entities;
 using Glossary.Infrastructure.dataAccess;
+using Glossary.Application.terms.command;
 
 namespace Glossary.Api.Controllers
 {
@@ -37,7 +38,7 @@ namespace Glossary.Api.Controllers
 
             if (term == null)
             {
-                return NotFound();
+                return new Term();
             }
 
             return term;
@@ -47,13 +48,22 @@ namespace Glossary.Api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTerm(int id, Term term)
+        public async Task<IActionResult> PutTerm(int id, UpdateTermDefinationCommand command)
         {
-            if (id != term.Id)
+            if (id != command.Id)
             {
                 return BadRequest();
             }
 
+            var term = new Term
+            {
+                WordOrPPhrase = command.WordOrPhrase,
+                Definition = new List<Definition>
+                {
+                    new Definition { Description = command.Defination}
+                }
+            };
+                
             _context.Entry(term).State = EntityState.Modified;
 
             try
@@ -79,8 +89,16 @@ namespace Glossary.Api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Term>> PostTerm(Term term)
+        public async Task<ActionResult<Term>> PostTerm(AddTermDefinationCommand command)
         {
+            var term = new Term
+            {
+                WordOrPPhrase = command.WordOrPhrase,
+                Definition = new List<Definition> {
+                    new Definition {Description = command.Defination}
+                }
+            };
+
             _context.Terms.Add(term);
             await _context.SaveChangesAsync();
 
