@@ -41,7 +41,7 @@ namespace Glossary.Api
              .EnableSensitiveDataLogging()
              );
             services.AddTransient<ICommandHandler<AddTermDefinationCommand>, AddTermDefinationCommandHandler>();
-            services.AddSingleton<Messages>();
+            services.AddScoped<Messages>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
