@@ -16,8 +16,11 @@ namespace Glossary.UI.Pages
         protected async override Task OnInitializedAsync()
         {
             TermList = (await TermService.GetAllTerms()).ToList();
+        }
 
-
+        protected async Task DeleteTermDefination(int id)
+        {
+            await TermService.Delete(id);
         }
     }
 }

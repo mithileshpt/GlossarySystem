@@ -28,7 +28,7 @@ else
                     <td>
                         <a href="@($"defination/{term.Id}")" class="btn btn-primary">Show Defination</a>
                         <a href="@($"EditTermDefination/{term.Id}")" class="btn btn-group">Edit</a>
-                        <a href="@($"defination/{term.Id}")" class="btn btn-danger">Delete</a>
+                        <button onclick="@DeleteTermDefination(term.Id)" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             }

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Glossary.Application;
+using Glossary.Application.terms.command;
 using Glossary.Core.entities;
 using Glossary.Infrastructure.dataAccess;
-using Glossary.Application.terms.command;
-using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
-using Glossary.Application;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Glossary.Api.Controllers
 {
@@ -69,7 +65,7 @@ namespace Glossary.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Term>> PostTerm(AddTermDefinationCommand command)
         {
-             await _message.Dispatch(command);
+            await _message.Dispatch(command);
             return Ok();
         }
 
@@ -77,18 +73,10 @@ namespace Glossary.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Term>> DeleteTerm(int id)
         {
-            var term = await _context.Terms.FindAsync(id);
-            if (term == null)
-            {
-                return NotFound();
-            }
-            
-            _context.Terms.Remove(term);
-            await _context.SaveChangesAsync();
-
-            return term;
+            await _message.Dispatch(new DeleteTermDefinationCommand() { Id = id });
+            return Ok();
         }
 
-       
+
     }
 }

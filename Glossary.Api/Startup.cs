@@ -42,6 +42,7 @@ namespace Glossary.Api
              );
             services.AddTransient<ICommandHandler<AddTermDefinationCommand>, AddTermDefinationCommandHandler>();
             services.AddTransient<ICommandHandler<UpdateTermDefinationCommand>, UpdateTermDefinationCommandHandler>();
+            services.AddTransient<ICommandHandler<DeleteTermDefinationCommand>, DeleteTermDefinationCommandHandler>();
             services.AddScoped<Messages>();
         }
 

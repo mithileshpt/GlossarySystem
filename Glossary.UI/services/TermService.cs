@@ -27,9 +27,11 @@ namespace Glossary.UI.services
             }
         }
 
-        public Task Delete(long termId)
+        public async Task Delete(long termId)
         {
-            throw new NotImplementedException();
+            
+            await _httpClient.DeleteAsync($"api/Terms/{termId}");
+
         }
 
         public async Task<IEnumerable<TermsViewModel>> GetAllTerms()
