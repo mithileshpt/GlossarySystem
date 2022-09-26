@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Glossary.Application;
+using Glossary.Application.terms.command;
+using Glossary.Application.terms.command.handler;
 using Glossary.Infrastructure.dataAccess;
+using Glossary.Infrastructure.steple.CQRS;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +40,8 @@ namespace Glossary.Api
              })
              .EnableSensitiveDataLogging()
              );
+            services.AddTransient<ICommandHandler<AddTermDefinationCommand>, AddTermDefinationCommandHandler>();
+            services.AddSingleton<Messages>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Glossary.Core.entities;
 using Glossary.Infrastructure.dataAccess;
 using Glossary.Application.terms.command;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+using Glossary.Application;
 
 namespace Glossary.Api.Controllers
 {
@@ -16,10 +18,13 @@ namespace Glossary.Api.Controllers
     public class TermsController : ControllerBase
     {
         private readonly GlossaryDbContext _context;
+        private readonly Messages _message;
 
-        public TermsController(GlossaryDbContext context)
+        public TermsController(GlossaryDbContext context,
+            Messages message)
         {
             _context = context;
+            _message = message;
             //_context.Database.EnsureCreated();
         }
 
@@ -92,18 +97,8 @@ namespace Glossary.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Term>> PostTerm(AddTermDefinationCommand command)
         {
-            var term = new Term
-            {
-                WordOrPPhrase = command.WordOrPhrase,
-                Definition = new List<Definition> {
-                    new Definition {Description = command.Defination}
-                }
-            };
-
-            _context.Terms.Add(term);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetTerm", new { id = term.Id }, term);
+             _message.Dispatch(command);
+            return Ok();
         }
 
         // DELETE: api/Terms/5

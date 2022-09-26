@@ -13,8 +13,4 @@
     <ProjectReference Include="..\Glossary.Core\Glossary.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DB\" />
-  </ItemGroup>
-
 </Project>
