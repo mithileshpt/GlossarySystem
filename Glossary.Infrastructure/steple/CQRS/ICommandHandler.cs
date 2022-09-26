@@ -7,6 +7,6 @@ namespace Glossary.Infrastructure.steple.CQRS
 {
     public interface ICommandHandler<TCommand> where TCommand : ICommand
     {
-        void Handle(TCommand Command);
+        Task Handle(TCommand Command);
     }
 }

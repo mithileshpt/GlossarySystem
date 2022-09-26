@@ -59,36 +59,8 @@ namespace Glossary.Api.Controllers
             {
                 return BadRequest();
             }
-
-            var term = new Term
-            {
-                Id = command.Id,
-                WordOrPPhrase = command.WordOrPhrase,
-                Definition = new List<Definition>
-                {
-                    new Definition { Description = command.Defination}
-                }
-            };
-                
-            _context.Entry(term).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TermExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            await _message.Dispatch(command);
+            return Ok();
         }
 
         // POST: api/Terms
@@ -97,7 +69,7 @@ namespace Glossary.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Term>> PostTerm(AddTermDefinationCommand command)
         {
-             _message.Dispatch(command);
+             await _message.Dispatch(command);
             return Ok();
         }
 
@@ -110,16 +82,13 @@ namespace Glossary.Api.Controllers
             {
                 return NotFound();
             }
-
+            
             _context.Terms.Remove(term);
             await _context.SaveChangesAsync();
 
             return term;
         }
 
-        private bool TermExists(int id)
-        {
-            return _context.Terms.Any(e => e.Id == id);
-        }
+       
     }
 }

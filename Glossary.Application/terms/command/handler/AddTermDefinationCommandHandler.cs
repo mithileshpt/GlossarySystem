@@ -15,7 +15,7 @@ namespace Glossary.Application.terms.command.handler
         {
             _context = context;
         }
-        public void Handle(AddTermDefinationCommand command)
+        public async Task Handle(AddTermDefinationCommand command)
         {
             var term = new Term
             {
@@ -26,7 +26,7 @@ namespace Glossary.Application.terms.command.handler
             };
 
             _context.Terms.Add(term);
-             _context.SaveChangesAsync();
+             await _context.SaveChangesAsync();
 
         }
     }

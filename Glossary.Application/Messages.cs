@@ -16,14 +16,14 @@ namespace Glossary.Application
 
         }
 
-        public void Dispatch(ICommand command)
+        public async Task Dispatch(ICommand command)
         {
             Type type = typeof(ICommandHandler<>);
             Type[] typeArgs = { command.GetType() };
             Type handlerType = type.MakeGenericType(typeArgs);
 
             dynamic handler = _provider.GetService(handlerType);
-            handler.Handle((dynamic)command);
+            await handler.Handle((dynamic)command);
         }
     }
 }

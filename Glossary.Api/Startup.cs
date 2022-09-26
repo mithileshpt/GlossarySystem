@@ -41,6 +41,7 @@ namespace Glossary.Api
              .EnableSensitiveDataLogging()
              );
             services.AddTransient<ICommandHandler<AddTermDefinationCommand>, AddTermDefinationCommandHandler>();
+            services.AddTransient<ICommandHandler<UpdateTermDefinationCommand>, UpdateTermDefinationCommandHandler>();
             services.AddScoped<Messages>();
         }
 
